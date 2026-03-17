@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jade Coffee · Your everyday taste of heaven</title>
+    <script src="https://cdn.jsdelivr.net/gh/csmittee/janishammer-central@main/js/injector.js"></script>
+    <style>
+        :root {
+            --j-primary: #B5838D;
+            --j-secondary: #6D6875;
+        }
+        .test-product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .test-card {
+            background: rgba(255,255,255,0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+        .test-card video {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+        }
+        .test-nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .test-nav-links a {
+            color: var(--j-primary);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+        .test-nav-links a:hover {
+            background: var(--j-primary);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-nav-links">
+        <a href="https://janishammer.com">Home</a>
+        <a href="https://flow.janishammer.com">Janis Flow</a>
+        <a href="https://jade.janishammer.com">Jade Coffee</a>
+        <a href="https://daje.janishammer.com">Daje Games</a>
+        <a href="https://janishammer.com/contact">Contact</a>
+    </div>
+
+    <div style="text-align: center; padding: 2rem;">
+        <h1>☕ Jade Coffee</h1>
+        <p>Your everyday taste of heaven</p>
+    </div>
+
+    <div class="test-product-grid">
+        <div class="test-card">
+            <video autoplay loop muted playsinline>
+                <source src="https://res.cloudinary.com/dfiomi0lb/video/upload/v1773607212/Jade.mp4" type="video/mp4">
+            </video>
+            <h2>Ethiopian Blend</h2>
+            <p>Premium coffee capsules, smooth finish</p>
+            <p><strong>฿450</strong></p>
+            <button class="j-btn" onclick="alert('Product details would open here')">View Details</button>
+        </div>
+    </div>
+
+    <script>
+        console.log('✅ jade-coffee page loaded');
+        if (window.validateJanishammer) {
+            setTimeout(() => window.validateJanishammer(), 500);
+        }
+    </script>
+</body>
+</html>
