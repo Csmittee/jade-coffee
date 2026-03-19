@@ -3,385 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jade Coffee · Taste of Heaven</title>
+    <title>Jade Coffee · Taste of heaven</title>
     
-    <!-- Font Preconnect -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- META TAGS (customize later) -->
+    <meta name="description" content="Our capsule coffee is coming soon! The taste that you love every day.">
+    <meta property="og:title" content="Jade Coffee">
+    <meta property="og:description" content="Taste of heaven">
+    <meta property="og:image" content="https://res.cloudinary.com/dfiomi0lb/image/upload/v1773341421/Eng_SEO_OG.png">
+    <meta property="og:url" content="https://jade.janishammer.com">
     
-    <!-- Outfit Font (300-700) -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- JANISHAMMER FINAL INJECTORS (config first, then core) -->
+    <script src="https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-config-v2.js?v=1"></script>
+    <script src="https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-core-v1.js?v=1"></script>
     
     <style>
-        /* RESET & BASE */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        /* BRAND COLORS - JADE COFFEE */
-        :root {
-            --primary: #6F4E37;      /* Coffee Bean */
-            --secondary: #C4A484;     /* Warm Latte */
-            --accent: #A67B5B;        /* Aged Patina */
-            --text-light: #ffffff;
-            --text-dark: #3a2a1f;
-            --shadow: rgba(0, 0, 0, 0.2);
-            --card-bg: rgba(255, 255, 255, 0.85);
-        }
-        
-        body {
-            font-family: 'Outfit', sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            background-image: url('https://res.cloudinary.com/dfiomi0lb/image/upload/v1773774756/Jade_only.png');
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            color: var(--text-dark);
-            line-height: 1.5;
-            position: relative;
-        }
-        
-        /* 0.3 opacity overlay for better readability */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        /* All content sits above the overlay */
-        .navbar, .hero, .content, .footer {
-            position: relative;
-            z-index: 2;
-        }
-        
-        /* ===== NAVIGATION ===== */
-        .navbar {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            padding: 0.75rem 2rem;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        
-        .nav-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 100px 1fr 100px;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        /* Left column - empty for balance */
-        .nav-left {
-            display: flex;
-            align-items: center;
-        }
-        
-        /* Center menu */
-        .nav-center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .nav-item {
-            position: relative;
-        }
-        
-        .nav-link {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 0;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            font-size: 1rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .nav-link i {
-            font-size: 0.75rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .nav-link:hover {
-            color: var(--secondary);
-        }
-        
-        .nav-link:hover i {
-            transform: rotate(180deg);
-        }
-        
-        /* Active state for current page */
-        .nav-link.active {
-            color: var(--secondary);
-            font-weight: 600;
-            border-bottom: 2px solid var(--secondary);
-        }
-        
-        /* Dropdown */
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%) translateY(10px);
-            min-width: 180px;
-            background: rgba(111, 78, 55, 0.95);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 0.75rem 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
-            z-index: 1000;
-        }
-        
-        .nav-item:hover .dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(5px);
-        }
-        
-        .dropdown-item {
-            display: block;
-            padding: 0.6rem 1.5rem;
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-        
-        .dropdown-item:hover {
-            background: var(--secondary);
-            color: var(--text-dark);
-        }
-        
-        .dropdown-item.current {
-            background: rgba(196, 164, 132, 0.3);
-            font-weight: 600;
-            border-left: 3px solid var(--secondary);
-        }
-        
-        /* Right column - hamburger */
-        .nav-right {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-        }
-        
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 6px;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 200;
-        }
-        
-        .hamburger span {
-            width: 28px;
-            height: 2px;
-            background: var(--text-light);
-            transition: all 0.3s ease;
-            border-radius: 4px;
-        }
-        
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-        
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-        
-        /* Mobile menu */
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(111, 78, 55, 0.98);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 150;
-            padding: 5rem 2rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .mobile-menu.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .mobile-menu-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        
-        .mobile-menu-item {
-            font-size: 1.5rem;
-        }
-        
-        .mobile-menu-link {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-            display: block;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .mobile-menu-link.active {
-            color: var(--secondary);
-            font-weight: 700;
-            border-left: 4px solid var(--secondary);
-            padding-left: 1rem;
-        }
-        
-        .mobile-dropdown {
-            margin-top: 0.5rem;
-            margin-left: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        
-        .mobile-dropdown-link {
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 0.25rem 0.5rem;
-        }
-        
-        .mobile-dropdown-link.current {
-            background: var(--secondary);
-            color: var(--text-dark);
-            border-radius: 8px;
-            padding-left: 1rem;
-        }
-        
-        /* ===== HERO SECTION ===== */
+        /* Hero section */
         .hero {
-            min-height: 60vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            position: relative;
+            text-align: center;
+            min-height: 60vh;
             padding: 2rem;
         }
         
-        .hero-container {
-            max-width: 900px;
-            width: 100%;
-            text-align: center;
-        }
-        
+        /* Breathing logo animation */
         .hero-logo {
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
-            animation: float 4s ease-in-out infinite;
+            max-width: 400px;
+            width: 90%;
+            margin-bottom: 2rem;
+            animation: breathe 4s ease-in-out infinite;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes breathe {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
         
-        /* ===== CONTENT SECTION ===== */
-        .content {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 0.5rem;
+        /* Slide‑in headings (ease power 1, 300ms) */
+        .hero h1 {
+            font-size: 3rem;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        
-        .section-subtitle {
-            font-size: 1.2rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: rgba(255,255,255,0.9);
-            font-weight: 300;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        /* Product Cards */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-        
-        .product-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border-radius: 24px;
-            padding: 2rem 1.5rem;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(106, 78, 55, 0.3);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.5);
+            text-shadow: 2px 4px 12px rgba(0,0,0,0.5);
+            margin-bottom: 0.5rem;
+            animation: slideIn 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) 0.1s forwards;
             opacity: 0;
-            transform: translateY(30px);
-            animation: slideIn 0.5s ease forwards;
+            transform: translateY(20px);
         }
         
-        .product-card:nth-child(1) { animation-delay: 0.1s; }
-        .product-card:nth-child(2) { animation-delay: 0.2s; }
-        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .hero h2 {
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 1px 2px 8px rgba(0,0,0,0.5);
+            font-weight: 400;
+            animation: slideIn 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
         
         @keyframes slideIn {
             to {
@@ -390,437 +70,143 @@
             }
         }
         
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero h2 { font-size: 1.3rem; }
+        }
+        
+        /* Product cards placeholder (Jade theme) */
+        .products-section {
+            max-width: 1280px;
+            margin: 4rem auto;
+            padding: 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-top: 5px solid #6F4E37; /* Jade primary */
+        }
+        
         .product-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 45px rgba(106, 78, 55, 0.4);
-            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-10px);
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
         
         .product-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #6F4E37, #C4A484);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: white;
-            box-shadow: 0 10px 20px rgba(106, 78, 55, 0.3);
         }
         
         .product-title {
             font-size: 1.5rem;
-            font-weight: 600;
+            color: #6F4E37;
             margin-bottom: 0.5rem;
-            color: var(--primary);
+            font-weight: 600;
         }
         
-        .product-description {
-            font-size: 0.95rem;
-            color: #4a3729;
-            margin-bottom: 1.5rem;
-            opacity: 0.9;
+        .product-desc {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
         }
         
         .product-price {
             font-size: 1.3rem;
             font-weight: 700;
+            color: #C4A484;
             margin-bottom: 1.5rem;
-            color: var(--accent);
         }
         
         .product-button {
-            display: inline-block;
-            padding: 0.75rem 2rem;
-            background: var(--primary);
+            background: #6F4E37;
             color: white;
-            text-decoration: none;
+            border: none;
+            padding: 0.75rem 2rem;
             border-radius: 40px;
             font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
             cursor: pointer;
-            font-family: 'Outfit', sans-serif;
-            font-size: 1rem;
-            box-shadow: 0 4px 10px rgba(106, 78, 55, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
         
         .product-button:hover {
-            background: var(--accent);
-            color: white;
+            background: #A67B5B;
             transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(106, 78, 55, 0.4);
         }
         
-        /* ===== FOOTER ===== */
-        .footer {
-            background: rgba(166, 123, 91, 0.9); /* Accent color with opacity */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: white;
-            padding: 3rem 2rem 1.5rem;
-            margin-top: 3rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .footer-container {
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        
-        .footer-brand h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: white;
-            font-weight: 600;
-        }
-        
-        .footer-brand p {
-            color: rgba(255,255,255,0.9);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        .footer-links h4, .footer-contact h4 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: white;
-            font-weight: 600;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-        
-        .footer-links a {
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-        
-        .footer-contact p {
-            margin-bottom: 0.75rem;
-            color: rgba(255,255,255,0.9);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .footer-contact i {
-            width: 20px;
-            color: var(--primary);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            color: rgba(255,255,255,0.8);
-            font-size: 0.9rem;
-        }
-        
-        .footer-bottom a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        
-        /* ===== RESPONSIVE ===== */
-        @media screen and (max-width: 991px) {
-            .nav-container {
-                grid-template-columns: 80px 1fr 80px;
-            }
-            
-            .product-grid {
-                gap: 1.5rem;
-            }
-        }
-        
-        @media screen and (max-width: 767px) {
-            .navbar {
-                padding: 0.75rem 1rem;
-            }
-            
-            .nav-menu {
-                display: none; /* Hide desktop menu */
-            }
-            
-            .hamburger {
-                display: flex;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .product-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-                margin: 0 auto;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
-            }
-            
-            .footer-contact p {
-                justify-content: center;
-            }
-            
-            .social-links {
-                justify-content: center;
-            }
-            
-            .hero {
-                min-height: 40vh;
-            }
-            
-            .hero-logo {
-                max-width: 80%;
-            }
-        }
-        
-        @media screen and (max-width: 479px) {
-            .nav-container {
-                grid-template-columns: 60px 1fr 60px;
-                gap: 0.5rem;
-            }
-            
-            .hero {
-                min-height: 30vh;
-                padding: 1rem;
-            }
-            
-            .content {
-                padding: 2rem 1rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
+        @media (max-width: 768px) {
+            .section-title { font-size: 2rem; }
+            .product-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <!-- Left spacer -->
-            <div class="nav-left"></div>
-            
-            <!-- Center navigation (desktop) -->
-            <div class="nav-center">
-                <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            Lifestyle <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <div class="dropdown">
-                            <a href="#" class="dropdown-item">Flow</a>
-                            <a href="#" class="dropdown-item">Daje</a>
-                            <a href="https://i-flexthailand.com" class="dropdown-item">I-Flex</a>
-                            <a href="#" class="dropdown-item current">Jade</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">Contact Us</a>
-                    </li>
-                </ul>
-            </div>
-            
-            <!-- Right side with hamburger -->
-            <div class="nav-right">
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <ul class="mobile-menu-list">
-            <li class="mobile-menu-item">
-                <a href="#" class="mobile-menu-link active">Lifestyle</a>
-                <div class="mobile-dropdown">
-                    <a href="#" class="mobile-dropdown-link">Flow</a>
-                    <a href="#" class="mobile-dropdown-link">Daje</a>
-                    <a href="https://i-flexthailand.com" class="mobile-dropdown-link">I-Flex</a>
-                    <a href="#" class="mobile-dropdown-link current">Jade</a>
-                </div>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="#" class="mobile-menu-link">Blog</a>
-            </li>
-            <li class="mobile-menu-item">
-                <a href="#" class="mobile-menu-link">Contact Us</a>
-            </li>
-        </ul>
-    </div>
-    
-    <!-- Hero Section (Logo Only) -->
+    <!-- HERO SECTION (injector does NOT add this) -->
     <section class="hero">
-        <div class="hero-container">
-            <img 
-                src="https://res.cloudinary.com/dfiomi0lb/image/upload/v1773775765/All_Janishammer_temp.png" 
-                alt="Jade Coffee" 
-                class="hero-logo"
-                style="width: 100%; max-width: 800px;"
-            >
+        <img src="https://res.cloudinary.com/dfiomi0lb/image/upload/v1773774149/Jade-logo-original.png" 
+             alt="Jade Coffee" 
+             class="hero-logo">
+        <h1>Our capsule coffee is coming soon!</h1>
+        <h2>The taste that you love every day</h2>
+    </section>
+
+    <!-- PRODUCTS SECTION (placeholder — replace later) -->
+    <section class="products-section">
+        <h2 class="section-title">Our Collection</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-icon">☕</div>
+                <h3 class="product-title">Morning Blend</h3>
+                <p class="product-desc">Smooth, balanced · Notes of chocolate and nuts</p>
+                <div class="product-price">฿450</div>
+                <button class="product-button">Pre-order</button>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">🌄</div>
+                <h3 class="product-title">Espresso Intenso</h3>
+                <p class="product-desc">Rich and bold · Perfect for milk drinks</p>
+                <div class="product-price">฿480</div>
+                <button class="product-button">Pre-order</button>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">🍫</div>
+                <h3 class="product-title">Decaf Harmony</h3>
+                <p class="product-desc">Full flavor, zero caffeine · Evening favorite</p>
+                <div class="product-price">฿420</div>
+                <button class="product-button">Pre-order</button>
+            </div>
         </div>
     </section>
-    
-    <!-- Main Content Area with Product Cards -->
-    <main class="content">
-        <h1 class="section-title">Taste of Heaven</h1>
-        <p class="section-subtitle">Best select bean, roasted with love · Ethically sourced · Perfectly crafted</p>
-        
-        <div class="product-grid">
-            <!-- Product Card 1: Ethiopian Blend -->
-            <div class="product-card">
-                <div class="product-icon">
-                    <i class="fas fa-coffee"></i>
-                </div>
-                <h3 class="product-title">Ethiopian Blend</h3>
-                <p class="product-description">
-                    Bright, floral, and complex. Notes of jasmine and blueberry from the highlands of Yirgacheffe.
-                </p>
-                <div class="product-price">฿450</div>
-                <button class="product-button">Discover</button>
-            </div>
-            
-            <!-- Product Card 2: Morning Roast -->
-            <div class="product-card">
-                <div class="product-icon">
-                    <i class="fas fa-mug-hot"></i>
-                </div>
-                <h3 class="product-title">Morning Roast</h3>
-                <p class="product-description">
-                    Smooth, balanced, and comforting. Medium roast with hints of chocolate and caramel.
-                </p>
-                <div class="product-price">฿380</div>
-                <button class="product-button">Wake Up</button>
-            </div>
-            
-            <!-- Product Card 3: Limited Reserve -->
-            <div class="product-card">
-                <div class="product-icon">
-                    <i class="fas fa-crown"></i>
-                </div>
-                <h3 class="product-title">Limited Reserve</h3>
-                <p class="product-description">
-                    Rare single-origin beans, small-batch roasted. Changing seasonal selection.
-                </p>
-                <div class="product-price">฿650</div>
-                <button class="product-button">Reserve Now</button>
-            </div>
-        </div>
-    </main>
-    
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>Jade Coffee</h3>
-                    <p>Taste of heaven. Ethically sourced beans, roasted with love in small batches for the perfect cup.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Coffee</h4>
-                    <ul>
-                        <li><a href="#">Ethiopian Blend</a></li>
-                        <li><a href="#">Morning Roast</a></li>
-                        <li><a href="#">Limited Reserve</a></li>
-                        <li><a href="#">Subscription</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-contact">
-                    <h4>Contact</h4>
-                    <p><i class="fas fa-envelope"></i> info@janishammer.com</p>
-                    <p><i class="fas fa-phone"></i> 089 54X XXXX</p>
-                    <p><i class="fas fa-globe"></i> jade.janishammer.com</p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>© 2026 Jade Coffee · A Janishammer Lifestyle Brand · All rights reserved</p>
-            </div>
-        </div>
-    </footer>
-    
-    <!-- Simple JavaScript for Mobile Menu -->
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-        });
-        
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.mobile-menu-link, .mobile-dropdown-link').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            });
-        });
-    </script>
 </body>
 </html>
