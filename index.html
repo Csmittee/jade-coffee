@@ -12,9 +12,17 @@
     <meta property="og:image" content="https://res.cloudinary.com/dfiomi0lb/image/upload/v1773341421/Eng_SEO_OG.png">
     <meta property="og:url" content="https://jade.janishammer.com">
     
-    <!-- JANISHAMMER FINAL INJECTORS (config first, then core) -->
-    <script src="https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-config-v2.2.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-core-v2.2.js"></script>
+   <!-- JANISHAMMER VERSION CONTROLLER -->
+<script src="https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-versions.js"></script>
+
+<!-- AUTO-LOAD CORRECT VERSIONS -->
+<script>
+    (function() {
+        var v = window.JANIS_VERSIONS;
+        document.write('<script src="https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-core-v' + v.core + '.js"><\/script>');
+        document.write('<script src="https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-config-v' + v.config + '.js"><\/script>');
+    })();
+</script>
     
     <style>
         /* Hero section */
