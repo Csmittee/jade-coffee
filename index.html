@@ -13,16 +13,24 @@
     <meta property="og:url" content="https://jade.janishammer.com">
     
    <!-- JANISHAMMER VERSION CONTROLLER -->
-<script src="https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-versions.js"></script>
-
-<!-- AUTO-LOAD CORRECT VERSIONS -->
-<script>
-    (function() {
-        var v = window.JANIS_VERSIONS;
-        document.write('<script src="https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-core-v' + v.core + '.js"><\/script>');
-        document.write('<script src="https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-config-v' + v.config + '.js"><\/script>');
-    })();
-</script>
+    <script src="https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-versions.js"></script>
+    
+    <!-- ASYNC LOADER (no document.write) -->
+    <script>
+        (function() {
+            var v = window.JANIS_VERSIONS;
+            
+            function loadScript(src) {
+                var script = document.createElement('script');
+                script.src = src;
+                script.async = false;  // Keep order: config must load before core
+                document.head.appendChild(script);
+            }
+            
+            loadScript('https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-core-v' + v.core + '.js');
+            loadScript('https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-config-v' + v.config + '.js');
+        })();
+    </script>
     
     <style>
         /* Hero section */
