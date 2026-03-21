@@ -12,26 +12,8 @@
     <meta property="og:image" content="https://res.cloudinary.com/dfiomi0lb/image/upload/v1773341421/Eng_SEO_OG.png">
     <meta property="og:url" content="https://jade.janishammer.com">
     
-  <!-- JANISHAMMER VERSION CONTROLLER -->
-<script src="https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-versions-v2.js"></script>
-<script>
-    (function() {
-        var v = window.JANIS_VERSIONS;
-        
-        function loadScript(src, callback) {
-            var s = document.createElement('script');
-            s.src = src;
-            s.async = false;
-            s.onload = callback;
-            document.head.appendChild(s);
-        }
-        
-        // Load config first, then core
-        loadScript('https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-config-v' + v.config + '.js', function() {
-            loadScript('https://cdn.jsdelivr.net/gh/csmittee/janishammer-central/js/injector-core-v' + v.core + '.js');
-        });
-    })();
-</script>
+    <script src="https://assets.janishammer.com/js/injector-core.js"></script>
+    <script src="https://assets.janishammer.com/js/injector-config.js"></script>
     
     <style>
         /* Hero section */
