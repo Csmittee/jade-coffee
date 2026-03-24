@@ -5,173 +5,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jade Coffee · Taste of heaven</title>
     
-    <!-- META TAGS (customize later) -->
-    <meta name="description" content="Our capsule coffee is coming soon! The taste that you love every day.">
+    <meta name="description" content="Premium coffee capsules — smooth blends for every moment">
     <meta property="og:title" content="Jade Coffee">
-    <meta property="og:description" content="Taste of heaven">
-    <meta property="og:image" content="https://res.cloudinary.com/dfiomi0lb/image/upload/v1773341421/Eng_SEO_OG.png">
+    <meta property="og:description" content="Our capsule coffee is coming soon!">
+    <meta property="og:image" content="https://res.cloudinary.com/dfiomi0lb/image/upload/v1773774149/Jade-logo-original.png">
     <meta property="og:url" content="https://jade.janishammer.com">
     
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- INJECTORS -->
     <script src="https://assets.janishammer.com/js/injector-core.js"></script>
     <script src="https://assets.janishammer.com/js/injector-config.js"></script>
     
     <style>
-        /* Hero section */
+        /* No body background override – let injector handle it */
+        
         .hero {
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            min-height: 60vh;
-            padding: 2rem;
+            padding: 4rem 2rem;
         }
         
-        /* Breathing logo animation */
         .hero-logo {
             max-width: 400px;
-            width: 90%;
+            width: 100%;
             margin-bottom: 2rem;
-            animation: breathe 4s ease-in-out infinite;
+            transition: transform 0.3s ease;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
         }
         
-        @keyframes breathe {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .hero-logo:hover {
+            transform: scale(1.02) translateY(-4px);
         }
         
-        /* Slide‑in headings (ease power 1, 300ms) */
         .hero h1 {
-            font-size: 3rem;
-            color: white;
-            text-shadow: 2px 4px 12px rgba(0,0,0,0.5);
-            margin-bottom: 0.5rem;
-            animation: slideIn 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) 0.1s forwards;
-            opacity: 0;
-            transform: translateY(20px);
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
         }
         
         .hero h2 {
-            font-size: 1.8rem;
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 1px 2px 8px rgba(0,0,0,0.5);
-            font-weight: 400;
-            animation: slideIn 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s forwards;
-            opacity: 0;
-            transform: translateY(20px);
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 500;
+            max-width: 600px;
         }
         
-        @keyframes slideIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero h2 { font-size: 1.3rem; }
-        }
-        
-        /* Product cards placeholder (Jade theme) */
         .products-section {
             max-width: 1280px;
-            margin: 4rem auto;
-            padding: 2rem;
+            margin: 0 auto;
+            padding: 3rem 2rem;
         }
         
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            color: white;
-            margin-bottom: 3rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            font-size: 2.2rem;
+            color: #fff;
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
         
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
         }
         
         .product-card {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
             border-radius: 24px;
             padding: 2rem;
             text-align: center;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
-            border-top: 5px solid #6F4E37; /* Jade primary */
+            border: 1px solid rgba(255,255,255,0.3);
         }
         
         .product-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             background: white;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.2);
         }
         
         .product-icon {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #6F4E37, #C4A484);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2.5rem;
-            color: white;
+            font-size: 3rem;
+            margin-bottom: 1rem;
         }
         
         .product-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 700;
             color: #6F4E37;
             margin-bottom: 0.5rem;
-            font-weight: 600;
         }
         
         .product-desc {
             color: #666;
             margin-bottom: 1rem;
-            line-height: 1.6;
+            line-height: 1.4;
         }
         
         .product-price {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #C4A484;
-            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #A67B5B;
+            margin-bottom: 1rem;
+        }
+        
+        .product-price::before {
+            content: "฿";
+            font-size: 1.2rem;
         }
         
         .product-button {
-            background: #6F4E37;
+            background: linear-gradient(135deg, #6F4E37, #A67B5B);
             color: white;
             border: none;
-            padding: 0.75rem 2rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 40px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
+            width: 100%;
         }
         
         .product-button:hover {
-            background: #A67B5B;
-            transform: scale(1.05);
+            transform: scale(1.02);
+            background: linear-gradient(135deg, #A67B5B, #C4A484);
         }
         
         @media (max-width: 768px) {
-            .section-title { font-size: 2rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero h2 { font-size: 1.1rem; }
             .product-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- HERO SECTION (injector does NOT add this) -->
     <section class="hero">
         <img src="https://res.cloudinary.com/dfiomi0lb/image/upload/v1773774149/Jade-logo-original.png" 
              alt="Jade Coffee" 
@@ -180,7 +160,6 @@
         <h2>The taste that you love every day</h2>
     </section>
 
-    <!-- PRODUCTS SECTION (placeholder — replace later) -->
     <section class="products-section">
         <h2 class="section-title">Our Collection</h2>
         <div class="product-grid">
@@ -188,21 +167,21 @@
                 <div class="product-icon">☕</div>
                 <h3 class="product-title">Morning Blend</h3>
                 <p class="product-desc">Smooth, balanced · Notes of chocolate and nuts</p>
-                <div class="product-price">฿450</div>
+                <div class="product-price">450</div>
                 <button class="product-button">Pre-order</button>
             </div>
             <div class="product-card">
                 <div class="product-icon">🌄</div>
                 <h3 class="product-title">Espresso Intenso</h3>
                 <p class="product-desc">Rich and bold · Perfect for milk drinks</p>
-                <div class="product-price">฿480</div>
+                <div class="product-price">480</div>
                 <button class="product-button">Pre-order</button>
             </div>
             <div class="product-card">
                 <div class="product-icon">🍫</div>
                 <h3 class="product-title">Decaf Harmony</h3>
                 <p class="product-desc">Full flavor, zero caffeine · Evening favorite</p>
-                <div class="product-price">฿420</div>
+                <div class="product-price">420</div>
                 <button class="product-button">Pre-order</button>
             </div>
         </div>
