@@ -1,0 +1,68 @@
+[
+  {
+    "id": "JD-001",
+    "name": "Ethiopia Dark Roast",
+    "name_th": "เอธิโอเปีย ดาร์กโรสต์",
+    "price": 250,
+    "main_image": "https://res.cloudinary.com/dfiomi0lb/image/upload/v1774911832/capsule_1.png",
+    "description": "Ethiopia single-origin dark roast. Bold, wine-like acidity with deep berry notes.",
+    "description_th": "เอธิโอเปียซิงเกิลออริจิน ดาร์กโรสต์ รสชาติเข้มข้น กลิ่นไวน์และเบอร์รีเข้ม",
+    "stock_status": "In Stock",
+    "collection": "Specialty"
+  },
+  {
+    "id": "JD-002",
+    "name": "Columbia Special",
+    "name_th": "โคลัมเบีย สเปเชียล",
+    "price": 190,
+    "main_image": "https://res.cloudinary.com/dfiomi0lb/image/upload/v1774911831/capsule_2.png",
+    "description": "Colombian special selection. Smooth, nutty, with a hint of caramel sweetness.",
+    "description_th": "โคลัมเบียคัดพิเศษ รสชาติเนียนละมุน กลิ่นนัทและคาราเมลอ่อน ๆ",
+    "stock_status": "In Stock",
+    "collection": "Specialty"
+  },
+  {
+    "id": "JD-003",
+    "name": "Arabica Dark Roast",
+    "name_th": "อราบิก้า ดาร์กโรสต์",
+    "price": 15,
+    "main_image": "https://res.cloudinary.com/dfiomi0lb/image/upload/v1774911831/capsule_6.png",
+    "description": "100% Arabica dark roast. Full-bodied with rich chocolate notes.",
+    "description_th": "อราบิก้า 100% ดาร์กโรสต์ ร่างกายเต็ม กลิ่นช็อกโกแลตเข้มข้น",
+    "stock_status": "In Stock",
+    "collection": "Classic"
+  },
+  {
+    "id": "JD-004",
+    "name": "Arabica Medium Roast",
+    "name_th": "อราบิก้า มีเดียมโรสต์",
+    "price": 15,
+    "main_image": "https://res.cloudinary.com/dfiomi0lb/image/upload/v1774911831/capsule_4.png",
+    "description": "100% Arabica medium roast. Well-balanced, smooth with subtle fruity notes.",
+    "description_th": "อราบิก้า 100% มีเดียมโรสต์ สมดุล เนียนนุ่ม กลิ่นผลไม้อ่อน ๆ",
+    "stock_status": "In Stock",
+    "collection": "Classic"
+  },
+  {
+    "id": "JD-005",
+    "name": "Robusta Dark Roast",
+    "name_th": "โรบัสต้า ดาร์กโรสต์",
+    "price": 15,
+    "main_image": "https://res.cloudinary.com/dfiomi0lb/image/upload/v1774911831/capsule_3.png",
+    "description": "Robusta dark roast. Strong, earthy, with high caffeine kick.",
+    "description_th": "โรบัสต้า ดาร์กโรสต์ รสชาติเข้ม กลิ่นดิน คาเฟอีนสูง",
+    "stock_status": "In Stock",
+    "collection": "Classic"
+  },
+  {
+    "id": "JD-006",
+    "name": "Robusta Medium Roast",
+    "name_th": "โรบัสต้า มีเดียมโรสต์",
+    "price": 15,
+    "main_image": "https://res.cloudinary.com/dfiomi0lb/image/upload/v1774911830/capsule_5.png",
+    "description": "Robusta medium roast. Bold yet smooth, creamy body with slight bitterness.",
+    "description_th": "โรบัสต้า มีเดียมโรสต์ เข้มแต่เนียน เนื้อครีมมี่ ขมเล็กน้อย",
+    "stock_status": "In Stock",
+    "collection": "Classic"
+  }
+]
