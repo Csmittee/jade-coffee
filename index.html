@@ -160,6 +160,12 @@
         <h2>The taste that you love every day</h2>
     </section>
 
+    <section class="products-section">
+        <h2 class="section-title">Our Collection</h2>
+        <div class="product-grid" id="product-grid"></div>
+    </section>
+
+    <script>
         async function loadProducts() {
             try {
                 const response = await fetch('/products.json');
@@ -171,7 +177,7 @@
         }
         
         function renderProducts(products) {
-            const grid = document.querySelector('.product-grid');
+            const grid = document.getElementById('product-grid');
             if (!grid) return;
             
             grid.innerHTML = products.map(p => `
@@ -179,12 +185,13 @@
                     <div class="product-icon">☕</div>
                     <h3 class="product-title">${p.name}</h3>
                     <p class="product-desc">${p.description}</p>
-                    <div class="product-price">${p.price}</div>
+                    <div class="product-price">฿${p.price}</div>
                     <button class="product-button">Pre-order</button>
                 </div>
             `).join('');
         }
 
-loadProducts();
+        loadProducts();
+    </script>
 </body>
 </html>
