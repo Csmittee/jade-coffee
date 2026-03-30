@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: '3.11'
       - name: Generate products.json
-        run: python scripts/generate_products.py
+        run: python scripts/generate-products.py
       - name: Commit changes
         run: |
           git config user.name "github-actions[bot]"
