@@ -160,31 +160,31 @@
         <h2>The taste that you love every day</h2>
     </section>
 
-    <section class="products-section">
-        <h2 class="section-title">Our Collection</h2>
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="product-icon">☕</div>
-                <h3 class="product-title">Morning Blend</h3>
-                <p class="product-desc">Smooth, balanced · Notes of chocolate and nuts</p>
-                <div class="product-price">450</div>
-                <button class="product-button">Pre-order</button>
-            </div>
-            <div class="product-card">
-                <div class="product-icon">🌄</div>
-                <h3 class="product-title">Espresso Intenso</h3>
-                <p class="product-desc">Rich and bold · Perfect for milk drinks</p>
-                <div class="product-price">480</div>
-                <button class="product-button">Pre-order</button>
-            </div>
-            <div class="product-card">
-                <div class="product-icon">🍫</div>
-                <h3 class="product-title">Decaf Harmony</h3>
-                <p class="product-desc">Full flavor, zero caffeine · Evening favorite</p>
-                <div class="product-price">420</div>
-                <button class="product-button">Pre-order</button>
-            </div>
-        </div>
-    </section>
+        async function loadProducts() {
+            try {
+                const response = await fetch('/products.json');
+                const products = await response.json();
+                renderProducts(products);
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
+        
+        function renderProducts(products) {
+            const grid = document.querySelector('.product-grid');
+            if (!grid) return;
+            
+            grid.innerHTML = products.map(p => `
+                <div class="product-card">
+                    <div class="product-icon">☕</div>
+                    <h3 class="product-title">${p.name}</h3>
+                    <p class="product-desc">${p.description}</p>
+                    <div class="product-price">${p.price}</div>
+                    <button class="product-button">Pre-order</button>
+                </div>
+            `).join('');
+        }
+
+loadProducts();
 </body>
 </html>
