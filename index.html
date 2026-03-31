@@ -11,15 +11,12 @@
     <meta property="og:image" content="https://res.cloudinary.com/dfiomi0lb/image/upload/v1773774149/Jade-logo-original.png">
     <meta property="og:url" content="https://jade.janishammer.com">
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Anti-flicker: hides page until injector builds correct navbar -->
+    <style id="jh-anti-flicker">body { opacity: 0; }</style>
     
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- INJECTORS -->
-    <script src="https://assets.janishammer.com/js/injector-core.js"></script>
+    <!-- INJECTORS (config must load before core) -->
     <script src="https://assets.janishammer.com/js/injector-config.js"></script>
+    <script src="https://assets.janishammer.com/js/injector-core.js"></script>
     
     <style>
         /* No body background override – let injector handle it */
@@ -70,7 +67,7 @@
         .section-title {
             text-align: center;
             font-size: 2.2rem;
-            color: #000000;  /* black */
+            color: #000000;
             margin-bottom: 2.5rem;
             text-shadow: none;
         }
@@ -167,7 +164,7 @@
         .cart-modal.active {
             display: flex;
         }
-        /* Cart Modal Styles */
+        
         .cart-content {
             background: white;
             width: 90%;
@@ -288,6 +285,7 @@
         .toast.show {
             opacity: 1;
         }        
+        
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .hero h2 { font-size: 1.1rem; }
@@ -308,10 +306,12 @@
         <h2 class="section-title">Our Collection</h2>
         <div class="product-grid" id="product-grid"></div>
     </section>
+    
     <div class="cart-floating" id="cartFloating">
         <i class="fas fa-shopping-bag"></i>
         <span class="cart-count" id="cartCount">0</span>
     </div>
+    
     <div id="cartModal" class="cart-modal">
         <div class="cart-content">
             <div class="cart-header">
@@ -335,7 +335,6 @@
     
     <div id="toast" class="toast"></div>
 
-    
     <script>
         async function loadProducts() {
             try {
@@ -364,103 +363,101 @@
         loadProducts();
     </script>
 
-<script>
-    let cart = JSON.parse(localStorage.getItem('jadeCart')) || [];
-    
-    function updateCartUI() {
-        const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-        document.getElementById('cartCount').innerText = cartCount;
-        localStorage.setItem('jadeCart', JSON.stringify(cart));
-        renderCartItems();
-    }
-    
-    function renderCartItems() {
-        const container = document.getElementById('cartItems');
-        const totalSpan = document.getElementById('cartTotal');
-        if (!container) return;
+    <script>
+        let cart = JSON.parse(localStorage.getItem('jadeCart')) || [];
         
-        if (cart.length === 0) {
-            container.innerHTML = '<div style="text-align: center; padding: 2rem;">Your cart is empty</div>';
-            if (totalSpan) totalSpan.innerText = '0';
-            return;
+        function updateCartUI() {
+            const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').innerText = cartCount;
+            localStorage.setItem('jadeCart', JSON.stringify(cart));
+            renderCartItems();
         }
         
-        let total = 0;
-        container.innerHTML = cart.map((item, idx) => {
-            total += item.price * item.quantity;
-            return `
-                <div class="cart-item">
-                    <img src="${item.image}" class="cart-item-image">
-                    <div class="cart-item-details">
-                        <div class="cart-item-name">${item.name}</div>
-                        <div class="cart-item-price">฿${item.price.toLocaleString()}</div>
+        function renderCartItems() {
+            const container = document.getElementById('cartItems');
+            const totalSpan = document.getElementById('cartTotal');
+            if (!container) return;
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 2rem;">Your cart is empty</div>';
+                if (totalSpan) totalSpan.innerText = '0';
+                return;
+            }
+            
+            let total = 0;
+            container.innerHTML = cart.map((item, idx) => {
+                total += item.price * item.quantity;
+                return `
+                    <div class="cart-item">
+                        <img src="${item.image}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">฿${item.price.toLocaleString()}</div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <button class="cart-qty-btn" onclick="updateCartItem(${idx}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="cart-qty-btn" onclick="updateCartItem(${idx}, 1)">+</button>
+                            <i class="fas fa-trash-alt" onclick="removeCartItem(${idx})" style="color: #F44336; cursor: pointer;"></i>
+                        </div>
                     </div>
-                    <div class="cart-item-actions">
-                        <button class="cart-qty-btn" onclick="updateCartItem(${idx}, -1)">-</button>
-                        <span>${item.quantity}</span>
-                        <button class="cart-qty-btn" onclick="updateCartItem(${idx}, 1)">+</button>
-                        <i class="fas fa-trash-alt" onclick="removeCartItem(${idx})" style="color: #F44336; cursor: pointer;"></i>
-                    </div>
-                </div>
-            `;
-        }).join('');
-        if (totalSpan) totalSpan.innerText = `฿${total.toLocaleString()}`;
-    }
-    
-    function updateCartItem(index, change) {
-        const newQty = cart[index].quantity + change;
-        if (newQty <= 0) cart.splice(index, 1);
-        else cart[index].quantity = newQty;
-        updateCartUI();
-    }
-    
-    function removeCartItem(index) {
-        cart.splice(index, 1);
-        updateCartUI();
-    }
-    
-    function addToCart(product) {
-        const existing = cart.find(i => i.id === product.id);
-        if (existing) existing.quantity++;
-        else cart.push({...product, quantity: 1});
-        updateCartUI();
-        showToast(`Added ${product.name} to cart`);
-    }
-    
-    function showToast(msg) {
-        const toast = document.getElementById('toast');
-        if (toast) {
-            toast.textContent = msg;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2000);
+                `;
+            }).join('');
+            if (totalSpan) totalSpan.innerText = `฿${total.toLocaleString()}`;
         }
-    }
-    
-    function openCart() {
-        document.getElementById('cartModal').classList.add('active');
-        renderCartItems();
-    }
-    
-    function closeCart() {
-        document.getElementById('cartModal').classList.remove('active');
-    }
-    
-    function requestQuotation() {
-        if (cart.length === 0) {
-            showToast('Please add items to your cart first');
-            return;
+        
+        function updateCartItem(index, change) {
+            const newQty = cart[index].quantity + change;
+            if (newQty <= 0) cart.splice(index, 1);
+            else cart[index].quantity = newQty;
+            updateCartUI();
         }
-        let items = cart.map(i => `${i.name} x ${i.quantity} = ฿${(i.price * i.quantity).toLocaleString()}`).join('\n');
-        let total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
-        let subject = encodeURIComponent('Quotation Request - Jade Coffee');
-        let body = encodeURIComponent(`Hello Jade Coffee Team,\n\nI would like a quotation for:\n\n${items}\n\nTotal: ฿${total.toLocaleString()}\n\nPlease contact me.\n\nBest regards`);
-        window.location.href = `mailto:info@janishammer.com?subject=${subject}&body=${body}`;
-        showToast('Opening email client...');
-    }
-    
-    document.getElementById('cartFloating').addEventListener('click', openCart);
-</script>
-
-
+        
+        function removeCartItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+        
+        function addToCart(product) {
+            const existing = cart.find(i => i.id === product.id);
+            if (existing) existing.quantity++;
+            else cart.push({...product, quantity: 1});
+            updateCartUI();
+            showToast(`Added ${product.name} to cart`);
+        }
+        
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            if (toast) {
+                toast.textContent = msg;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2000);
+            }
+        }
+        
+        function openCart() {
+            document.getElementById('cartModal').classList.add('active');
+            renderCartItems();
+        }
+        
+        function closeCart() {
+            document.getElementById('cartModal').classList.remove('active');
+        }
+        
+        function requestQuotation() {
+            if (cart.length === 0) {
+                showToast('Please add items to your cart first');
+                return;
+            }
+            let items = cart.map(i => `${i.name} x ${i.quantity} = ฿${(i.price * i.quantity).toLocaleString()}`).join('\n');
+            let total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+            let subject = encodeURIComponent('Quotation Request - Jade Coffee');
+            let body = encodeURIComponent(`Hello Jade Coffee Team,\n\nI would like a quotation for:\n\n${items}\n\nTotal: ฿${total.toLocaleString()}\n\nPlease contact me.\n\nBest regards`);
+            window.location.href = `mailto:info@janishammer.com?subject=${subject}&body=${body}`;
+            showToast('Opening email client...');
+        }
+        
+        document.getElementById('cartFloating').addEventListener('click', openCart);
+    </script>
 </body>
 </html>
